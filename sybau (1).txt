@@ -34,9 +34,13 @@ repeat
     local start = plr.PlayerGui:WaitForChild("Main"):WaitForChild("Loading") and game:IsLoaded()
     wait()
 until start
-World1 = game.PlaceId == 2753915549
-World2 = game.PlaceId == 4442272183
-World3 = game.PlaceId == 100117331123089
+if game.PlaceId == 2753915549 then
+    World1 = true
+elseif game.PlaceId == 4442272183 then
+    World2 = true
+elseif game.PlaceId == 7449423635 then
+    World3 = true
+end
 Sea = World1 or World2 or World3 
 Marines = function()
     replicated.Remotes.CommF_:InvokeServer("SetTeam", "Marines")
@@ -45,43 +49,43 @@ Pirates = function()
     replicated.Remotes.CommF_:InvokeServer("SetTeam", "Pirates")
 end
 
-local TeddyGay = loadstring(game:HttpGet("https://pastefy.app/egG1nCjB/raw"))()
+local TeddyGay = loadstring(game:HttpGet("https://pastefy.app/oRwYCYhi/raw"))()
 
-local DoorBySea = {
+local DoorBySea = {
 
-    World1  = { 
+    World1  = { 
 
-        CFrame.new(-663.9844360351562, 10.661487579345703, 1702.4075927734375),
+        CFrame.new(-663.9844360351562, 10.661487579345703, 1702.4075927734375),
 
-        CFrame.new(-569.425476, 10.6625795, 1555.19812, 0.965862036, 0, 0.259057134, 0, 1, 0, -0.259057134, 0, 0.965862036),
+        CFrame.new(-569.425476, 10.6625795, 1555.19812, 0.965862036, 0, 0.259057134, 0, 1, 0, -0.259057134, 0, 0.965862036),
 
-        CFrame.new(-615.751221, 10.6684809, 1477.42603, 0.499786854, 0, 0.866148472, 0, 1, 0, -0.866148472, 0, 0.499786854)
+        CFrame.new(-615.751221, 10.6684809, 1477.42603, 0.499786854, 0, 0.866148472, 0, 1, 0, -0.866148472, 0, 0.499786854)
 
-    },
+    },
 
-
 
-     World2  = { 
 
-        CFrame.new(-368.115631, 75.8233261, 156.40126, 0.719358087, 0, 0.694639385, 0, 1, 0, -0.694639385, 0, 0.719358087),
+     World2  = { 
 
-        CFrame.new(-412.784393, 74.4335785, 156.166626, 0, 0, 1, 0, 1, -0, -1, 0, 0),
+        CFrame.new(-368.115631, 75.8233261, 156.40126, 0.719358087, 0, 0.694639385, 0, 1, 0, -0.694639385, 0, 0.719358087),
 
-        CFrame.new(-508.141083, 75.8170013, 155.627289, 0, 0, 1, 0, 1, -0, -1, 0, 0)
+        CFrame.new(-412.784393, 74.4335785, 156.166626, 0, 0, 1, 0, 1, -0, -1, 0, 0),
 
-    },
+        CFrame.new(-508.141083, 75.8170013, 155.627289, 0, 0, 1, 0, 1, -0, -1, 0, 0)
 
-
+    },
 
-    World3 = { 
 
-        CFrame.new(-12455.3896, 334.499054, -7698.82031, -0.707134247, 0, 0.707079291, 0, 1, 0, -0.707079291, 0, -0.707134247),
 
-        CFrame.new(-12602.584, 334.555939, -7742.83398, -0.939700961, 0, 0.341998369, 0, 1, 0, -0.341998339, 0, -0.939700902),
+    World3 = { 
 
-        CFrame.new(-12753.3633, 334.586975, -7700.92871, 0.173624322, 0, -0.984811783, 0, 1, 0, 0.984811783, 0, 0.173624322)
+        CFrame.new(-12455.3896, 334.499054, -7698.82031, -0.707134247, 0, 0.707079291, 0, 1, 0, -0.707079291, 0, -0.707134247),
 
-    }
+        CFrame.new(-12602.584, 334.555939, -7742.83398, -0.939700961, 0, 0.341998369, 0, 1, 0, -0.341998339, 0, -0.939700902),
+
+        CFrame.new(-12753.3633, 334.586975, -7700.92871, 0.173624322, 0, -0.984811783, 0, 1, 0, 0.984811783, 0, 0.173624322)
+
+    }
 
 }
 
@@ -321,7 +325,6 @@ Attack.Kill = function(model, Succes)
             model:SetAttribute("Locked", model.HumanoidRootPart.CFrame)
         end
         PosMon = model:GetAttribute("Locked").Position
-    if not _G.AutoFarmUnbound and _G.AutoTrickOrTreat then
         BringEnemy()
         end
         EquipWeapon(_G.SelectWeapon)
@@ -345,7 +348,6 @@ Attack.Kill = function(model, Succes)
             _tp(model.HumanoidRootPart.CFrame * CFrame.new(- 25, 30, 0))
         end
     end
-end
 Attack.Kill2 = function(model, Succes)
     if model and Succes then
         if not model:GetAttribute("Locked") then
@@ -2101,255 +2103,255 @@ local Misc = Tab14:AddSection("Misc")
 
 
 
-Main:AddDropdown({
-
+Main:AddDropdown({
 
-
 
-	Title = "Select Weapon",
-
 
-
 
-	Description = "",
-
+	Title = "Select Weapon",
 
-
 
-	Values = {"Melee", "Sword", "Blox Fruit", "Gun" },
-
 
-
 
-	Default = "Melee",
-
+	Description = "",
 
-
 
-	Multi = false,
-
 
-
 
-	Callback = function(Value)
-
+	Values = {"Melee", "Sword", "Blox Fruit", "Gun" },
 
-
 
-		_G.ChooseWP = Value
-
 
-
 
-	end
-
+	Default = "Melee",
 
-
 
-})
-
 
-
 
-
-
+	Multi = false,
 
-
 
-spawn(function()
-
 
-
 
-    while wait(Sec) do
-
+	Callback = function(Value)
 
-
 
-        pcall(function()
-
 
-
 
-            if _G.ChooseWP == "Melee" then
-
+		_G.ChooseWP = Value
 
-
 
-                for _, v in pairs(plr.Backpack:GetChildren()) do
-
 
-
 
-                    if v.ToolTip == "Melee" then
-
+	end
 
-
 
-                        if plr.Backpack:FindFirstChild(tostring(v.Name)) then
-
 
-
 
-                            _G.SelectWeapon = v.Name
-
+})
 
-
 
-                        end
-
 
-
 
-                    end
-
 
-
 
-                end
-
 
-
 
-            elseif _G.ChooseWP == "Sword" then
-
 
-
+spawn(function()
 
-                for _, v in pairs(plr.Backpack:GetChildren()) do
-
 
-
 
-                    if v.ToolTip == "Sword" then
-
 
-
+    while wait(Sec) do
 
-                        if plr.Backpack:FindFirstChild(tostring(v.Name)) then
-
 
-
 
-                            _G.SelectWeapon = v.Name
-
 
-
+        pcall(function()
 
-                        end
-
 
-
 
-                    end
-
 
-
+            if _G.ChooseWP == "Melee" then
 
-                end
-
 
-
 
-            elseif _G.ChooseWP == "Gun" then
-
 
-
+                for _, v in pairs(plr.Backpack:GetChildren()) do
 
-                for _, v in pairs(plr.Backpack:GetChildren()) do
-
 
-
 
-                    if v.ToolTip == "Gun" then
-
 
-
+                    if v.ToolTip == "Melee" then
 
-                        if plr.Backpack:FindFirstChild(tostring(v.Name)) then
-
 
-
 
-                            _G.SelectWeapon = v.Name
-
 
-
+                        if plr.Backpack:FindFirstChild(tostring(v.Name)) then
 
-                        end
-
 
-
 
-                    end
-
 
-
+                            _G.SelectWeapon = v.Name
 
-                end
-
 
-
 
-            elseif _G.ChooseWP == "Blox Fruit" then
-
 
-
+                        end
 
-                for _, v in pairs(plr.Backpack:GetChildren()) do
-
 
-
 
-                    if v.ToolTip == "Blox Fruit" then
-
 
-
+                    end
 
-                        if plr.Backpack:FindFirstChild(tostring(v.Name)) then
-
 
-
 
-                            _G.SelectWeapon = v.Name
-
 
-
+                end
 
-                        end
-
 
-
 
-                    end
-
 
-
+            elseif _G.ChooseWP == "Sword" then
 
-                end
-
 
-
 
-            end
-
 
-
+                for _, v in pairs(plr.Backpack:GetChildren()) do
 
-        end)
-
 
-
 
-    end
-
 
-
+                    if v.ToolTip == "Sword" then
 
-end)
-
 
-
+
+
+                        if plr.Backpack:FindFirstChild(tostring(v.Name)) then
+
+
+
+
+                            _G.SelectWeapon = v.Name
+
+
+
+
+                        end
+
+
+
+
+                    end
+
+
+
+
+                end
+
+
+
+
+            elseif _G.ChooseWP == "Gun" then
+
+
+
+
+                for _, v in pairs(plr.Backpack:GetChildren()) do
+
+
+
+
+                    if v.ToolTip == "Gun" then
+
+
+
+
+                        if plr.Backpack:FindFirstChild(tostring(v.Name)) then
+
+
+
+
+                            _G.SelectWeapon = v.Name
+
+
+
+
+                        end
+
+
+
+
+                    end
+
+
+
+
+                end
+
+
+
+
+            elseif _G.ChooseWP == "Blox Fruit" then
+
+
+
+
+                for _, v in pairs(plr.Backpack:GetChildren()) do
+
+
+
+
+                    if v.ToolTip == "Blox Fruit" then
+
+
+
+
+                        if plr.Backpack:FindFirstChild(tostring(v.Name)) then
+
+
+
+
+                            _G.SelectWeapon = v.Name
+
+
+
+
+                        end
+
+
+
+
+                    end
+
+
+
+
+                end
+
+
+
+
+            end
+
+
+
+
+        end)
+
+
+
+
+    end
+
+
+
+
+end)
+
+
+
 
 
 
@@ -2593,377 +2595,377 @@ spawn(function()
 end)
 Main:AddSeperator("Halloween Event")
 
-Main:AddToggle({
+Main:AddToggle({
 
-    Title = " Auto Farm Trick Or Treat ",
+    Title = " Auto Farm Trick Or Treat ",
 
-    Description = "",
+    Description = "",
 
-    Default = false,
+    Default = false,
 
-    Callback = function(Value)
+    Callback = function(Value)
 
-        _G.AutoTrickOrTreat = Value
+        _G.AutoTrickOrTreat = Value
 
-    end
+    end
 
-})
+})
 
-
 
-
 
-local Doors = World1 and DoorBySea.World1 or World2 and DoorBySea.World2 or DoorBySea.World3
 
-
 
-
+local Doors = World1 and DoorBySea.World1 or World2 and DoorBySea.World2 or DoorBySea.World3
 
-local TargetEnemies = {
 
-    ["Gorilla"] = true,
 
-    ["Vampire"] = true,
 
-    ["rip_return"] = true,
 
-    ["Rip Infantry"] = true,
+local TargetEnemies = {
 
-    ["Cursed Skeleton"] = true,
+    ["Gorilla"] = true,
 
-    ["Snowman"] = true,
+    ["Vampire"] = true,
 
-    ["Oni Soldier"] = true
+    ["rip_return"] = true,
 
-}
+    ["Rip Infantry"] = true,
 
-
+    ["Cursed Skeleton"] = true,
 
-
+    ["Snowman"] = true,
 
-local function FarmTargetEnemies()
+    ["Oni Soldier"] = true
 
-    pcall(function()
+}
 
-        for i, v in pairs(workspace.Enemies:GetChildren()) do
 
-            if TargetEnemies[v.Name] and v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
 
-                repeat
 
-                    task.wait()
 
-                    Attack.Kill(v, _G.AutoTrickOrTreat)
+local function FarmTargetEnemies()
 
-                until not _G.AutoTrickOrTreat or not v.Parent or v.Humanoid.Health <= 0
+    pcall(function()
 
-            end
+        for i, v in pairs(workspace.Enemies:GetChildren()) do
 
-        end
+            if TargetEnemies[v.Name] and v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
 
-    end)
+                repeat
 
-end
+                    task.wait()
 
-
+                    Attack.Kill(v, _G.AutoTrickOrTreat)
 
+                until not _G.AutoTrickOrTreat or not v.Parent or v.Humanoid.Health <= 0
 
+            end
 
-local function TeleportToDoor(cf)
+        end
 
-    if not Root or not cf then return false end
+    end)
 
-    _tp(cf)
+end
 
-    repeat
 
-        task.wait()
 
-        
 
-        local hasTargetEnemy = false
 
-        for _, v in pairs(workspace.Enemies:GetChildren()) do
+local function TeleportToDoor(cf)
 
-            if TargetEnemies[v.Name] and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
+    if not Root or not cf then return false end
 
-                hasTargetEnemy = true
+    _tp(cf)
 
-                break
+    repeat
 
-            end
+        task.wait()
 
-        end
+        
 
-        if hasTargetEnemy then
+        local hasTargetEnemy = false
 
-            return false  
+        for _, v in pairs(workspace.Enemies:GetChildren()) do
 
-        end
+            if TargetEnemies[v.Name] and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
 
-    until not _G.AutoTrickOrTreat or (Root.Position - cf.Position).Magnitude < 10
+                hasTargetEnemy = true
 
-    task.wait(0.5)
+                break
 
-    return true  
+            end
 
-end
+        end
 
-
+        if hasTargetEnemy then
 
-
+            return false  
 
-local function TrickAndClaim()
+        end
 
-    for _, v in pairs(workspace:GetDescendants()) do
+    until not _G.AutoTrickOrTreat or (Root.Position - cf.Position).Magnitude < 10
 
-        if v:IsA("ProximityPrompt") then
+    task.wait(0.5)
 
-            local part = v.Parent
+    return true  
 
-            if part and (Root.Position - part.Position).Magnitude < 20 then
+end
 
-                pcall(function()
 
-                    
 
-                    fireproximityprompt(v)
 
-                    task.wait(0.5)
+
+local function TrickAndClaim()
+
+    for _, v in pairs(workspace:GetDescendants()) do
+
+        if v:IsA("ProximityPrompt") then
+
+            local part = v.Parent
+
+            if part and (Root.Position - part.Position).Magnitude < 20 then
+
+                pcall(function()
 
                     
 
-                    HalloweenRemotes.Event:FireServer("ClaimReward")
+                    fireproximityprompt(v)
 
-                end)
+                    task.wait(0.5)
 
-            end
+                    
 
-        end
+                    HalloweenRemotes.Event:FireServer("ClaimReward")
 
-    end
+                end)
 
-end
+            end
 
-task.spawn(function()
+        end
 
-    while task.wait(0.5) do
+    end
 
-        if _G.AutoTrickOrTreat then
+end
 
-            pcall(function()
+task.spawn(function()
 
-                
+    while task.wait(0.5) do
 
-                local hasEnemies = false
+        if _G.AutoTrickOrTreat then
 
-                for _, v in pairs(workspace.Enemies:GetChildren()) do
+            pcall(function()
 
-                    if TargetEnemies[v.Name] and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
+                
 
-                        hasEnemies = true
+                local hasEnemies = false
 
-                        break
+                for _, v in pairs(workspace.Enemies:GetChildren()) do
 
-                    end
+                    if TargetEnemies[v.Name] and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
 
-                end
+                        hasEnemies = true
 
-                
+                        break
 
-                if hasEnemies then
+                    end
 
-                    
+                end
 
-                    FarmTargetEnemies()
+                
 
-                else
+                if hasEnemies then
 
-                    
+                    
 
-                    for _, cf in ipairs(Doors) do
+                    FarmTargetEnemies()
 
-                        if not _G.AutoTrickOrTreat then break end
+                else
 
-                      
+                    
 
-                        local arrived = TeleportToDoor(cf)
+                    for _, cf in ipairs(Doors) do
 
-                        if not arrived then
+                        if not _G.AutoTrickOrTreat then break end
+
+                      
+
+                        local arrived = TeleportToDoor(cf)
+
+                        if not arrived then
 
                             
 
-                            FarmTargetEnemies()
+                            FarmTargetEnemies()
 
-                            break  
+                            break  
 
-                        end
+                        end
 
-                        
+                        
 
-                        if not _G.AutoTrickOrTreat then break end
+                        if not _G.AutoTrickOrTreat then break end
 
-                        
+                        
 
-                        
+                        
 
-                        local startTime = tick()
+                        local startTime = tick()
 
-                        while tick() - startTime < 5 and _G.AutoTrickOrTreat do
+                        while tick() - startTime < 5 and _G.AutoTrickOrTreat do
 
-                            TrickAndClaim()
+                            TrickAndClaim()
 
-                            task.wait(0.5)
+                            task.wait(0.5)
 
-                        end
+                        end
 
-                    end
+                    end
 
-                end
+                end
 
-            end)
+            end)
 
-        end
+        end
 
-    end
+    end
 
 end)
 Main:AddToggle({
-	Title = "Auto Farm Unbound Werewolf Boss",
+	Title = "Auto Farm Unbound Werewolf Boss",
 
-	Description = "",
+	Description = "",
 
-	Default = false,
+	Default = false,
 
-	Callback = function(Value)
+	Callback = function(Value)
 
-		_G.AutoFarmUnbound = Value
+		_G.AutoFarmUnbound = Value
 
-	end
+	end
 
-})
+})
 
-
 
-spawn(function()
 
-	while task.wait() do
+spawn(function()
 
-		pcall(function()
+	while task.wait() do
 
-			if _G.AutoFarmUnbound then
+		pcall(function()
 
-				for i, v in pairs(workspace.Enemies:GetChildren()) do
+			if _G.AutoFarmUnbound then
 
-					if v.Name == "Unbound Werewolf" and v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") then
+				for i, v in pairs(workspace.Enemies:GetChildren()) do
 
-						if v.Humanoid.Health > 0 then
+					if v.Name == "Unbound Werewolf" and v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") then
 
-							repeat
+						if v.Humanoid.Health > 0 then
 
-								task.wait()
+							repeat
 
-								Attack.Kill(v, _G.AutoFarmUnbound)
+								task.wait()
 
-							until not _G.AutoFarmUnbound or not v.Parent or v.Humanoid.Health <= 0
+								Attack.Kill(v, _G.AutoFarmUnbound)
 
-						end
+							until not _G.AutoFarmUnbound or not v.Parent or v.Humanoid.Health <= 0
 
-					end
+						end
 
-				end
+					end
 
-			end
+				end
 
-		end)
+			end
 
-	end
+		end)
+
+	end
 
 end)
 
-Main:AddToggle({
-
+Main:AddToggle({
 
-
 
-    Title = "Auto Random Candy Corn",
-
 
-
 
-    Description = "",
-
+    Title = "Auto Random Candy Corn",
 
-
 
-    Default = false,
-
 
-
 
-    Callback = function(Value)
-
+    Description = "",
 
-
 
-        _G.Random_Candy = Value
-
 
-
 
-    end
-
+    Default = false,
 
-
 
-})
-
 
-
 
-
-
+    Callback = function(Value)
 
-
 
-spawn(function()
-
 
-
 
-    while wait(Sec) do
-
+        _G.Random_Candy = Value
 
-
 
-        pcall(function()
-
 
-
 
-            if _G.Random_Candy then
-
+    end
 
-
 
-                replicated.Remotes.CommF_:InvokeServer("Cousin", "HalloweenGacha25")
 
-            end
-
 
-
+})
 
-        end)
-
 
-
 
-    end
-
 
-
 
-end)
+
+
+
+
+spawn(function()
+
+
+
+
+    while wait(Sec) do
+
+
+
+
+        pcall(function()
+
+
+
+
+            if _G.Random_Candy then
+
+
+
+
+                replicated.Remotes.CommF_:InvokeServer("Cousin", "HalloweenGacha25")
+
+            end
+
+
+
+
+        end)
+
+
+
+
+    end
+
+
+
+
+end)
 
 
 
@@ -8589,166 +8591,166 @@ spawn(function()
     end
 end)
 
-Prehistoric:AddToggle({
-
+Prehistoric:AddToggle({
 
-
 
-    Title = "Auto Prehistoric (Fully)",
-
 
-
 
-    Description = "",
-
+    Title = "Auto Prehistoric (Fully)",
 
-
 
-    Default = false,
-
 
-
 
-    Callback = function(Value)
-
+    Description = "",
 
-
 
-        _G.Prefully = Value
-
 
-
 
-    end
-
+    Default = false,
 
-
 
-})
 
-spawn(function()
 
-    while wait(Sec) do
+    Callback = function(Value)
 
-        local done = false
 
-        pcall(function()
 
-            if _G.CraftVM then
 
-                if GetM("Volcanic Magnet") < 1 then
+        _G.Prefully = Value
 
-                    if GetM("Scrap Metal") >= 10 and GetM("Blaze Ember") >= 15 then
 
-                        replicated.Remotes.CommF_:InvokeServer("CraftItem", "Craft", "Volcanic Magnet")
 
-                    elseif GetM("Scrap Metal") < 10 then
 
-                        local v = GetConnectionEnemies("Forest Pirate")
+    end
 
-                        if v then
 
-                            repeat
 
-                                wait()
 
-                                Attack.Kill(v, _G.CraftVM)
+})
 
-                            until not _G.CraftVM or not v.Parent or v.Humanoid.Health <= 0 or GetM("Scrap Metal") >= 10
+spawn(function()
 
-                        else
+    while wait(Sec) do
 
-                            _tp(CFrame.new(-13206.45, 425.89, -7964.55))
+        local done = false
 
-                        end
+        pcall(function()
 
-                    elseif GetM("Blaze Ember") < 15 then
+            if _G.CraftVM then
 
-                        repeat
+                if GetM("Volcanic Magnet") < 1 then
 
-                            wait()
+                    if GetM("Scrap Metal") >= 10 and GetM("Blaze Ember") >= 15 then
 
-                            _G.FarmBlazeEM = true
+                        replicated.Remotes.CommF_:InvokeServer("CraftItem", "Craft", "Volcanic Magnet")
 
-                        until not _G.CraftVM or GetM("Blaze Ember") >= 15
+                    elseif GetM("Scrap Metal") < 10 then
 
-                        _G.FarmBlazeEM = false
+                        local v = GetConnectionEnemies("Forest Pirate")
 
-                    end
+                        if v then
 
-                end
+                            repeat
 
-
+                                wait()
 
-                -- Nếu đã có Volcanic Magnet thì dừng vòng lặp 1 và chuyển sang vòng lặp 2
+                                Attack.Kill(v, _G.CraftVM)
 
-                if GetM("Volcanic Magnet") >= 1 then
+                            until not _G.CraftVM or not v.Parent or v.Humanoid.Health <= 0 or GetM("Scrap Metal") >= 10
 
-                    done = true
+                        else
 
-                end
+                            _tp(CFrame.new(-13206.45, 425.89, -7964.55))
 
-            else
+                        end
 
-                done = true
+                    elseif GetM("Blaze Ember") < 15 then
 
-            end
+                        repeat
 
-        end)
+                            wait()
 
-
+                            _G.FarmBlazeEM = true
 
-        if done then
+                        until not _G.CraftVM or GetM("Blaze Ember") >= 15
 
-            break
+                        _G.FarmBlazeEM = false
 
-        end
+                    end
 
-    end
+                end
 
-
 
-
 
-    while wait(Sec) do
+                -- Nếu đã có Volcanic Magnet thì dừng vòng lặp 1 và chuyển sang vòng lặp 2
 
-        pcall(function()
+                if GetM("Volcanic Magnet") >= 1 then
 
-            if _G.Prefully then
+                    done = true
 
-                if GetM("Dragon Egg") <= 0 then
+                end
 
-                    repeat
+            else
 
-                        wait()
+                done = true
 
-                        _G.Prehis_Find = true
+            end
 
-                        _G.Prehis_Skills = true
+        end)
 
-                        _G.Prehis_DE = true
 
-                        _G.ResetPH = true
 
-                    until not _G.DragoV1 or GetM("Dragon Egg") >= 1
+        if done then
 
-                    _G.Prehis_Find = false
+            break
 
-                    _G.Prehis_Skills = false
+        end
 
-                    _G.Prehis_DE = false
+    end
 
-                    _G.ResetPH = false
 
-                end
 
-            end
 
-        end)
 
-    end
+    while wait(Sec) do
 
-end)
+        pcall(function()
+
+            if _G.Prefully then
+
+                if GetM("Dragon Egg") <= 0 then
+
+                    repeat
+
+                        wait()
+
+                        _G.Prehis_Find = true
+
+                        _G.Prehis_Skills = true
+
+                        _G.Prehis_DE = true
+
+                        _G.ResetPH = true
+
+                    until not _G.DragoV1 or GetM("Dragon Egg") >= 1
+
+                    _G.Prehis_Find = false
+
+                    _G.Prehis_Skills = false
+
+                    _G.Prehis_DE = false
+
+                    _G.ResetPH = false
+
+                end
+
+            end
+
+        end)
+
+    end
+
+end)
 
 
 
@@ -11289,7 +11291,40 @@ spawn(function()
     end
 end)
 
+Shop:AddSeperator("Support | Sever")
+
+Shop:AddButton({
+    Title = "Web Site TDT",
+    Description = "Click copy link Dowload Client - Script New TDT",
+    Callback = function()
+         setclipboard("https://webtdt.com/")
+    end
+})
+Shop:AddButton({
+    Title = "Shop Game",
+    Description = "Click copy link Account",
+    Callback = function()
+         setclipboard("https://thinhrobloxviet.com/")
+    end
+})
+
+Shop:AddButton({
+    Title = "Groud Zalo",
+    Description = "Click copy link Zalo",
+    Callback = function()
+         setclipboard("https://zalo.me/g/qihvbb859")
+    end
+})
+
+Shop:AddButton({
+    Title = "Join Discord",
+    Description = "Click copy link Discord",
+    Callback = function()
+         setclipboard("https://discord.gg/tdtfreenokey")
+    end
+})
 Shop:AddSeperator("Shop Options")
+
 
 Shop:AddButton({
     Title = "Buy Buso",
@@ -11959,7 +11994,7 @@ Misc:AddToggle({
         spawn(function()
             while _G.RTXMode do
                 wait()
-                a.Ambient = Color3.fromRGB(33, 33, 33)
+                a.Ambient = Color3.fromRGB(0, 50, 0)
                 a.Brightness = 0.3
                 c.Brightness = 0.176
                 c.Contrast = 0.39
@@ -12330,4 +12365,3 @@ task.spawn(function()
         end)
     end)
 end)
-
