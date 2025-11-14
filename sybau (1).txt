@@ -9738,14 +9738,14 @@ Raids:AddDropdown({
     Values = DungeonTables,
     Default = "Flame",
     Multi = false,
-    Callback = function(Value)
-        _G.SelectChip = Value
+    Callback = function(v1033)
+        _G.SelectChip = v1033
     end
 })
 
 Raids:AddToggle({
     Title = "Auto Select Dungeon Chip",
-    Description = "",
+    Description = "\196\144\195\161nh Qu\195\161i V\195\160 \196\144i Chuy\225\187\131n \196\144\225\186\163o",
     Default = false,
     Callback = function(Value)
         _G.AutoSelectDungeon = Value
