@@ -10644,82 +10644,38 @@ LegenSword = function()
         end
     end
 end
-ChestEsp = function()
-    if ChestESP then
-        local CollectionService = game:GetService("CollectionService")
-        local Players = game:GetService("Players")
-        local Player = Players.LocalPlayer
-        local Character = Player.Character or Player.CharacterAdded:Wait()
-        local playerPos = Character:GetPivot().Position
-        local Chests = CollectionService:GetTagged("_ChestTagged")        
-        for _, Chest in ipairs(Chests) do
-            local __DARKLUA_CONTINUE_507 = false
-            repeat
-                if not SelectedIsland or Chest:IsDescendantOf(SelectedIsland) then
-                    if not Chest:GetAttribute("IsDisabled") then
-                        local chestPos
-                        local success, result = pcall(function()
-                            return Chest:GetPivot().Position
-                        end)
-                        if success then
-                            chestPos = result
-                        elseif Chest:IsA("BasePart") then
-                            chestPos = Chest.Position
+ function UpdateChestESP()
+    for _, v77 in pairs(game:GetService("CollectionService"):GetTagged("_ChestTagged")) do
+        do
+            local l_v77_0 = v77
+            pcall(function()
+                if _G.ChestESP then
+                    if not l_v77_0:GetAttribute("IsDisabled") then
+                        if l_v77_0:FindFirstChild("ChestEsp") then
+                            local v79 = v70((game:GetService("Players").LocalPlayer.Character.Head.Position - l_v77_0:GetPivot().Position).Magnitude / 3)
+                            l_v77_0.ChestEsp.TextLabel.Text = "Chest\n" .. v79 .. " M"
                         else
-                            __DARKLUA_CONTINUE_507 = true
-                            break
-                        end
-                        local distanceMagnitude = (chestPos - playerPos).Magnitude
-                        local sanitizedFullName = Chest:GetFullName():gsub("[^%w_]", "_")
-                        local existingEsp = Chest:FindFirstChild("ChestEspAttachment")
-                        if not existingEsp then
-                            local attachment = Instance.new("Attachment")
-                            attachment.Name = "ChestEspAttachment"
-                            attachment.Parent = Chest
-                            attachment.Position = Vector3.new(0, 3, 0)
-                            local nameEsp = Instance.new("BillboardGui")
-                            nameEsp.Name = "NameEsp"
-                            nameEsp.Size = UDim2.new(0, 200, 0, 30)
-                            nameEsp.Adornee = attachment
-                            nameEsp.ExtentsOffset = Vector3.new(0, 1, 0)
-                            nameEsp.AlwaysOnTop = true
-                            nameEsp.Parent = attachment
-                            local nameLabel = Instance.new("TextLabel")
-                            nameLabel.Font = Enum.Font.Code
-                            nameLabel.TextSize = 14
-                            nameLabel.TextWrapped = true
-                            nameLabel.Size = UDim2.new(1, 0, 1, 0)
-                            nameLabel.TextYAlignment = Enum.TextYAlignment.Top
-                            nameLabel.BackgroundTransparency = 1
-                            nameLabel.TextStrokeTransparency = 0.5
-                            nameLabel.TextColor3 = Color3.fromRGB(80, 245, 245)
-                            nameLabel.Parent = nameEsp
-                        end
-                        local nameEsp = existingEsp and existingEsp:FindFirstChild("NameEsp")
-                        if nameEsp then
-                            local displayDistance = math.floor(distanceMagnitude / 3)
-                            local chestName = Chest.Name:gsub("Label", "")
-                            nameEsp.TextLabel.Text = string.format("[%s] %d M", chestName, displayDistance)
-                        end
-                        if _G_AutoFarmChest and distanceMagnitude <= 20 then
-                            if existingEsp then
-                                existingEsp:Destroy()
-                            end
+                            local v80 = Instance.new("BillboardGui", l_v77_0)
+                            v80.Name = "ChestEsp"
+                            v80.ExtentsOffset = Vector3.new(0, 1, 0)
+                            v80.Size = UDim2.new(1, 200, 1, 30)
+                            v80.Adornee = l_v77_0
+                            v80.AlwaysOnTop = true
+                            local v81 = Instance.new("TextLabel", v80)
+                            v81.Font = "Code"
+                            v81.FontSize = "Size14"
+                            v81.TextWrapped = true
+                            v81.Size = UDim2.new(1, 0, 1, 0)
+                            v81.TextYAlignment = "Top"
+                            v81.BackgroundTransparency = 1
+                            v81.TextStrokeTransparency = 0.5
+                            v81.TextColor3 = Color3.fromRGB(255, 215, 0)
                         end
                     end
+                elseif l_v77_0:FindFirstChild("ChestEsp") then
+                    l_v77_0:FindFirstChild("ChestEsp"):Destroy()
                 end
-                __DARKLUA_CONTINUE_507 = true
-            until true
-            if not __DARKLUA_CONTINUE_507 then
-                break
-            end
-        end
-    else
-        for _, Chest in ipairs(game:GetService("CollectionService"):GetTagged("_ChestTagged")) do
-            local espAttachment = Chest:FindFirstChild("ChestEspAttachment")
-            if espAttachment then
-                espAttachment:Destroy()
-            end
+            end)
         end
     end
 end
