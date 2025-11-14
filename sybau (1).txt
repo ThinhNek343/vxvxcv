@@ -10644,7 +10644,7 @@ LegenSword = function()
         end
     end
 end
- function UpdateChestESP()
+function UpdateChestESP()
     for _, v77 in pairs(game:GetService("CollectionService"):GetTagged("_ChestTagged")) do
         do
             local l_v77_0 = v77
@@ -10674,6 +10674,44 @@ end
                     end
                 elseif l_v77_0:FindFirstChild("ChestEsp") then
                     l_v77_0:FindFirstChild("ChestEsp"):Destroy()
+                end
+            end)
+        end
+    end
+end
+function v70(v82)
+    return math.floor(v82 + 0.5)
+end
+function UpdateDevilChams()
+    for _, v84 in pairs(game.Workspace:GetChildren()) do
+        do
+            local l_v84_0 = v84
+            pcall(function()
+                if not DevilFruitESP then
+                    if l_v84_0.Handle:FindFirstChild("NameEsp" .. Number) then
+                        l_v84_0.Handle:FindFirstChild("NameEsp" .. Number):Destroy()
+                    end
+                elseif string.find(l_v84_0.Name, "Fruit") then
+                    if l_v84_0.Handle:FindFirstChild("NameEsp" .. Number) then
+                        l_v84_0.Handle["NameEsp" .. Number].TextLabel.Text = l_v84_0.Name .. "   \n" .. v70((game:GetService("Players").LocalPlayer.Character.Head.Position - l_v84_0.Handle.Position).Magnitude / 3) .. " Distance"
+                    else
+                        local v86 = Instance.new("BillboardGui", l_v84_0.Handle)
+                        v86.Name = "NameEsp" .. Number
+                        v86.ExtentsOffset = Vector3.new(0, 1, 0)
+                        v86.Size = UDim2.new(1, 200, 1, 30)
+                        v86.Adornee = l_v84_0.Handle
+                        v86.AlwaysOnTop = true
+                        local v87 = Instance.new("TextLabel", v86)
+                        v87.Font = Enum.Font.GothamSemibold
+                        v87.FontSize = "Size14"
+                        v87.TextWrapped = true
+                        v87.Size = UDim2.new(1, 0, 1, 0)
+                        v87.TextYAlignment = "Top"
+                        v87.BackgroundTransparency = 1
+                        v87.TextStrokeTransparency = 0.5
+                        v87.TextColor3 = Color3.fromRGB(255, 255, 255)
+                        v87.Text = l_v84_0.Name .. " \n" .. v70((game:GetService("Players").LocalPlayer.Character.Head.Position - l_v84_0.Handle.Position).Magnitude / 3) .. " Distance"
+                    end
                 end
             end)
         end
@@ -10772,11 +10810,11 @@ Combat:AddToggle({
     Description = "",
     Default = false,
     Callback = function(Value)
-        ChestESP = Value
+        UpdateChestESP = Value
         spawn(function()
-            while ChestESP do
+            while UpdateChestESP do
                 wait()
-                ChestEsp()
+                UpdateChestESP()
             end
         end)
     end
