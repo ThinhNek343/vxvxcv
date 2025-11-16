@@ -2360,42 +2360,48 @@ Main:AddToggle({
 })
 
 spawn(function()
-    while wait(Sec) do
-        if _G.Level then
-            --pcall(function()
-                local QuestTitle = plr.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text
-                if not string.find(QuestTitle, QuestNeta()[5]) then
-                    replicated.Remotes.CommF_:InvokeServer("AbandonQuest")
-                end
-                if plr.PlayerGui.Main.Quest.Visible == false then
-                    _tp(QuestNeta()[6])
-                    if (Root.Position - QuestNeta()[6].Position).Magnitude <= 5 then
-                        replicated.Remotes.CommF_:InvokeServer("StartQuest", QuestNeta()[3], QuestNeta()[2])
+    while task.wait() do
+        if _G.AutoFarmLevelNew then
+            pcall(function()
+                local l_Quest_0 = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest
+                CheckQuestNew()
+                if l_Quest_0.Visible == false then
+                    StartBring = false
+                    if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - CFrameQuestNew.Position).Magnitude > 20 then
+                        TP1(CFrameQuestNew)
+                    else
+                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest", NameQuestNew, LevelQuestNew)
                     end
-                elseif plr.PlayerGui.Main.Quest.Visible == true then
-                    if workspace.Enemies:FindFirstChild(QuestNeta()[1]) then
-                        for i, v in pairs(workspace.Enemies:GetChildren()) do
-                            if Attack.Alive(v) then
-                                if v.Name == QuestNeta()[1] then
-                                    if string.find(QuestTitle, QuestNeta()[5]) then
-                                        repeat
-                                            wait()
-                                            Attack.Kill(v, _G.Level)
-                                        until not _G.Level or v.Humanoid.Health <= 0 or not v.Parent or plr.PlayerGui.Main.Quest.Visible == false
-                                    else
-                                        replicated.Remotes.CommF_:InvokeServer("AbandonQuest")
-                                    end
-                                end
+                else
+                    for _, v519 in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                        if v519.Name == MonNew and v519:FindFirstChild("HumanoidRootPart") and v519:FindFirstChild("Humanoid") and v519.Humanoid.Health > 0 then
+                            if not string.find(l_Quest_0.Container.QuestTitle.Title.Text, NameMonNew) then
+                                StartBring = false
+                                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
+                            else
+                                repeat
+                                    task.wait()
+                                    EquipWeapon(_G.SelectWeapon)
+                                    AutoHaki()
+                                    topos(v519.HumanoidRootPart.CFrame * CFrame.new(0, 30, 0))
+                                    v519.HumanoidRootPart.CanCollide = false
+                                    v519.Humanoid.WalkSpeed = 0
+                                    v519.Head.CanCollide = false
+                                    v519.HumanoidRootPart.Size = Vector3.new(70, 70, 70)
+                                    StartBring = true
+                                    MonFarmNew = v519.Name
+                                    game:GetService("VirtualUser"):CaptureController()
+                                    game:GetService("VirtualUser"):Button1Down(Vector2.new(1280, 672))
+                                until not _G.AutoFarmLevelNew or v519.Humanoid.Health <= 0 or not v519.Parent or l_Quest_0.Visible == false
                             end
                         end
-                    else
-                        _tp(QuestNeta()[4])
-                        if replicated:FindFirstChild(QuestNeta()[1]) then
-                            _tp(replicated:FindFirstChild(QuestNeta()[1]).HumanoidRootPart.CFrame * CFrame.new(0, 30, 0))
-                        end
+                    end
+                    if not game:GetService("Workspace").Enemies:FindFirstChild(MonNew) then
+                        TP1(CFrameMonNew)
+                        StartBring = false
                     end
                 end
-          --  end)
+            end)
         end
     end
 end)
